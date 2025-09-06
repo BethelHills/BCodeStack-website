@@ -686,7 +686,7 @@ function setupContactForm() {
     if (!form) return;
     
     // Update form action for Formspree (you'll need to replace with your actual Formspree endpoint)
-    form.action = 'https://formspree.io/f/YOUR_FORM_ID';
+    form.action = 'https://formspree.io/f/xnnblpwp';
     form.method = 'POST';
     
     // Add form fields for better tracking
