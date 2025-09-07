@@ -511,6 +511,132 @@ body {
     justify-content: center;
 }
 
+/* Wireframe Project Details */
+.wireframe-project {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: #f8fafc;
+    border-radius: 15px;
+    border: 1px solid #e5e7eb;
+}
+
+.project-showcase h3 {
+    color: #1f2937;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.project-description {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.project-overview {
+    font-size: 1.1rem;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 10px;
+    border-left: 4px solid #2563eb;
+}
+
+.team-collaboration {
+    margin-bottom: 2rem;
+}
+
+.team-collaboration h4 {
+    color: #1f2937;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.team-collaboration p {
+    color: #4b5563;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.team-collaboration strong {
+    color: #2563eb;
+    font-weight: 600;
+}
+
+.wireframe-gallery {
+    margin-bottom: 2rem;
+}
+
+.wireframe-gallery h4 {
+    color: #1f2937;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.gallery-placeholder {
+    background: white;
+    border: 2px dashed #d1d5db;
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.gallery-placeholder:hover {
+    border-color: #2563eb;
+    background: #f8fafc;
+}
+
+.upload-area {
+    color: #6b7280;
+}
+
+.upload-area i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #9ca3af;
+}
+
+.upload-area p {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #374151;
+}
+
+.upload-area small {
+    color: #9ca3af;
+}
+
+.project-skills h4 {
+    color: #1f2937;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.project-skills .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.project-skills .skill-tag {
+    background: #dbeafe;
+    color: #1e40af;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.project-skills .skill-tag:hover {
+    background: #2563eb;
+    color: white;
+    transform: translateY(-2px);
+}
+
 /* Contact Section */
 .contact {
     padding: 100px 0;
@@ -827,6 +953,29 @@ body {
     
     .social-links {
         justify-content: center;
+    }
+    
+    .wireframe-project {
+        padding: 1rem;
+        margin-top: 2rem;
+    }
+    
+    .project-overview {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+    
+    .upload-area i {
+        font-size: 2rem;
+    }
+    
+    .project-skills .skill-tags {
+        gap: 0.3rem;
+    }
+    
+    .project-skills .skill-tag {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
     }
 }
 
