@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bethelhills.github.io/bcodestack-portfolio/sitemap.xml

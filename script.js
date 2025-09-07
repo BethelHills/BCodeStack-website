@@ -221,6 +221,17 @@ window.addEventListener('scroll', () => {
 // Add loading animation
 window.addEventListener('load', () => {
     document.body.classList.add('loaded');
+    
+    // Hide loading screen after page loads
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+        setTimeout(() => {
+            loadingScreen.classList.add('hidden');
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 500);
+        }, 1000);
+    }
 });
 
 // Add CSS for loading animation
@@ -568,8 +579,12 @@ function createParticleAnimation() {
     });
 }
 
-// Initialize particle animation
-createParticleAnimation();
+// Initialize particle animation with error handling
+try {
+    createParticleAnimation();
+} catch (error) {
+    console.log('Particle animation failed:', error);
+}
 
 // Add typing effect for skills
 function createTypingEffect() {
@@ -706,8 +721,17 @@ function initializeMap() {
     document.head.appendChild(mapScript);
 }
 
-// Initialize map
-initializeMap();
+// Initialize map with error handling
+try {
+    initializeMap();
+} catch (error) {
+    console.log('Map initialization failed:', error);
+    // Fallback: show a simple location text
+    const mapElement = document.getElementById('map');
+    if (mapElement) {
+        mapElement.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #6b7280;"><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i>Ajao Estate, Lagos, Nigeria</div>';
+    }
+}
 
 // Enhanced contact form with Formspree integration
 function setupContactForm() {

@@ -1,0 +1,21 @@
+{
+    "name": "Bethel Hillary - Full Stack Developer",
+    "short_name": "BCodeStack",
+    "description": "Passionate Full-Stack developer from Lagos, Nigeria. Creating beautiful, functional, and user-centered digital experiences.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#2563eb",
+    "icons": [
+        {
+            "src": "/favicon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/favicon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
