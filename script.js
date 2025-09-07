@@ -461,6 +461,13 @@ const darkModeStyles = `
         border-color: #2563eb !important;
     }
     
+    @media (max-width: 480px) {
+        .dark-mode .contact-method {
+            background: rgba(45, 45, 45, 0.5) !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+    }
+    
     .dark-mode .contact {
         background: #2d2d2d !important;
     }

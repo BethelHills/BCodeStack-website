@@ -992,6 +992,27 @@ html {
         text-align: center;
     }
     
+    .contact-method {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.5rem;
+    }
+    
+    .contact-method i {
+        margin-bottom: 0.5rem;
+    }
+    
+    .contact-method h4 {
+        margin-bottom: 0.25rem;
+        font-size: 1rem;
+    }
+    
+    .contact-method p {
+        margin: 0;
+        font-size: 0.9rem;
+    }
+    
     .social-links {
         justify-content: center;
     }
@@ -1065,6 +1086,38 @@ html {
     .filter-btn {
         padding: 0.4rem 0.8rem;
         font-size: 0.8rem;
+    }
+    
+    /* Enhanced contact method alignment for small screens */
+    .contact-method {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .contact-method i {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+        margin-bottom: 0;
+    }
+    
+    .contact-method h4 {
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+    
+    .contact-method p {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 500;
     }
 }
 
