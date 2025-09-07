@@ -709,13 +709,29 @@ enhanceFormValidation();
 function setupWhatsAppContact() {
     const whatsappContact = document.querySelector('.whatsapp-contact');
     if (whatsappContact) {
-        whatsappContact.addEventListener('click', () => {
-            const phoneNumber = '+2348143465588'; // Remove spaces and special characters
+        whatsappContact.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            const phoneNumber = '2348143465588'; // Remove + and spaces for WhatsApp URL
             const message = 'Hi BCodeStack! I saw your portfolio and I\'m interested in discussing a project with you. I understand you work Monday-Friday (24/7 remote) and are closed weekends.';
+            
+            // Create WhatsApp URL
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
             
-            // Open WhatsApp in a new tab
-            window.open(whatsappUrl, '_blank');
+            // Detect if user is on mobile
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                // On mobile, try to open WhatsApp app directly
+                window.location.href = whatsappUrl;
+            } else {
+                // On desktop, open in new tab
+                const newWindow = window.open(whatsappUrl, '_blank');
+                if (!newWindow) {
+                    // If popup blocked, fallback to current window
+                    window.location.href = whatsappUrl;
+                }
+            }
         });
         
         // Add click animation
@@ -729,6 +745,14 @@ function setupWhatsAppContact() {
         
         whatsappContact.addEventListener('mouseleave', () => {
             whatsappContact.style.transform = 'translateY(0) scale(1)';
+        });
+        
+        // Add visual feedback on click
+        whatsappContact.addEventListener('click', () => {
+            whatsappContact.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                whatsappContact.style.transform = 'translateY(-3px) scale(1)';
+            }, 150);
         });
     }
 }
