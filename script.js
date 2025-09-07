@@ -710,7 +710,7 @@ function setupWhatsAppContact() {
     const whatsappContact = document.querySelector('.whatsapp-contact');
     if (whatsappContact) {
         whatsappContact.addEventListener('click', () => {
-            const phoneNumber = '+23480143465588'; // Remove spaces and special characters
+            const phoneNumber = '+2348143465588'; // Remove spaces and special characters
             const message = 'Hi BCodeStack! I saw your portfolio and I\'m interested in discussing a project with you. I understand you work Monday-Friday (24/7 remote) and are closed weekends.';
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
             
