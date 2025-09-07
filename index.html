@@ -436,7 +436,7 @@
                         <div id="map" class="map"></div>
                     </div>
                 </div>
-                <form class="contact-form" id="contact-form">
+                <form class="contact-form" id="contact-form" action="https://formspree.io/f/xnnblpwp" method="POST">
                     <div class="form-group">
                         <input type="text" id="name" name="name" placeholder="Your Name" required>
                     </div>
@@ -449,7 +449,15 @@
                     <div class="form-group">
                         <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
                     </div>
+                    <!-- Hidden field for auto-reply configuration -->
+                    <input type="hidden" name="_replyto" id="replyto">
+                    <input type="hidden" name="_subject" value="New Contact Form Submission - BCodeStack Portfolio">
+                    <input type="hidden" name="_next" value="https://bethelhills.github.io/BCodeStack-website/?success=true">
                     <button type="submit" class="btn btn-primary">Send Message</button>
+                    <div id="form-success" class="form-success" style="display: none;">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Thank you! Your message has been sent successfully. You'll receive an auto-reply confirmation shortly.</p>
+                    </div>
                 </form>
             </div>
         </div>

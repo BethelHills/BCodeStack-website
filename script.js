@@ -607,24 +607,24 @@ function setupContactForm() {
     const form = document.getElementById('contact-form');
     if (!form) return;
     
-    // Update form action for Formspree (you'll need to replace with your actual Formspree endpoint)
-    form.action = 'https://formspree.io/f/xnnblpwp';
-    form.method = 'POST';
+    // Form is already configured with Formspree action in HTML
+    // Set up reply-to field to match email field for auto-replies
+    const emailField = document.getElementById('email');
+    const replyToField = document.getElementById('replyto');
     
-    // Add form fields for better tracking
-    const hiddenFields = [
-        { name: '_subject', value: 'New Contact Form Submission from BCodeStack Portfolio' },
-        { name: '_next', value: window.location.href + '?success=true' },
-        { name: '_captcha', value: 'false' }
-    ];
+    if (emailField && replyToField) {
+        emailField.addEventListener('input', () => {
+            replyToField.value = emailField.value;
+        });
+    }
     
-    hiddenFields.forEach(field => {
-        const hiddenInput = document.createElement('input');
-        hiddenInput.type = 'hidden';
-        hiddenInput.name = field.name;
-        hiddenInput.value = field.value;
-        form.appendChild(hiddenInput);
-    });
+    // Check for success parameter in URL
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === 'true') {
+        showFormSuccess();
+        // Clean up URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
     
     // Enhanced form submission
     form.addEventListener('submit', async (e) => {
@@ -735,6 +735,21 @@ function setupWhatsAppContact() {
 
 // Initialize WhatsApp contact
 setupWhatsAppContact();
+
+// Form success message function
+function showFormSuccess() {
+    const successMessage = document.getElementById('form-success');
+    if (successMessage) {
+        successMessage.style.display = 'block';
+        // Scroll to success message
+        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // Hide after 10 seconds
+        setTimeout(() => {
+            successMessage.style.display = 'none';
+        }, 10000);
+    }
+}
 
 // Portfolio section functionality
 function setupPortfolioSection() {
