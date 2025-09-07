@@ -421,6 +421,15 @@ const darkModeStyles = `
         background: #1a1a1a !important;
     }
     
+    .dark-mode .portfolio {
+        background: #1a1a1a !important;
+    }
+    
+    .dark-mode .portfolio-card {
+        background: #2d2d2d !important;
+        border-color: #404040 !important;
+    }
+    
     .dark-mode .contact {
         background: #2d2d2d !important;
     }
@@ -656,7 +665,7 @@ function initializeMap() {
     const mapScript = document.createElement('script');
     mapScript.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
     mapScript.onload = () => {
-        const map = L.map('map').setView([6.5244, 3.3792], 13); // Lagos, Nigeria coordinates
+        const map = L.map('map').setView([6.5244, 3.3792], 15); // Ajao Estate, Lagos, Nigeria coordinates
         
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
@@ -664,7 +673,7 @@ function initializeMap() {
         
         // Add a marker
         const marker = L.marker([6.5244, 3.3792]).addTo(map);
-        marker.bindPopup('<b>BCodeStack</b><br>Lagos, Nigeria').openPopup();
+        marker.bindPopup('<b>Bethel Hillary</b><br>Ajao Estate, Lagos, Nigeria').openPopup();
         
         mapElement.classList.add('loaded');
     };
@@ -782,3 +791,36 @@ function enhanceFormValidation() {
 
 // Initialize enhanced form validation
 enhanceFormValidation();
+
+// Portfolio section functionality
+function setupPortfolioSection() {
+    // Resume download functionality
+    const downloadResumeBtn = document.getElementById('download-resume');
+    if (downloadResumeBtn) {
+        downloadResumeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            showNotification('Resume download will be available soon! Upload your PDF to enable this feature.', 'info');
+        });
+    }
+    
+    // Portfolio view functionality
+    const viewPortfolioBtn = document.getElementById('view-portfolio');
+    if (viewPortfolioBtn) {
+        viewPortfolioBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            showNotification('Portfolio gallery will be available soon!', 'info');
+        });
+    }
+    
+    // Certifications view functionality
+    const viewCertificationsBtn = document.getElementById('view-certifications');
+    if (viewCertificationsBtn) {
+        viewCertificationsBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            showNotification('Certifications section will be available soon!', 'info');
+        });
+    }
+}
+
+// Initialize portfolio section
+setupPortfolioSection();
