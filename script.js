@@ -705,6 +705,37 @@ function enhanceFormValidation() {
 // Initialize enhanced form validation
 enhanceFormValidation();
 
+// WhatsApp contact functionality
+function setupWhatsAppContact() {
+    const whatsappContact = document.querySelector('.whatsapp-contact');
+    if (whatsappContact) {
+        whatsappContact.addEventListener('click', () => {
+            const phoneNumber = '+23480143465588'; // Remove spaces and special characters
+            const message = 'Hi Bethel! I saw your portfolio and I\'m interested in discussing a project with you.';
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            
+            // Open WhatsApp in a new tab
+            window.open(whatsappUrl, '_blank');
+        });
+        
+        // Add click animation
+        whatsappContact.addEventListener('mousedown', () => {
+            whatsappContact.style.transform = 'translateY(-1px) scale(0.98)';
+        });
+        
+        whatsappContact.addEventListener('mouseup', () => {
+            whatsappContact.style.transform = 'translateY(-3px) scale(1)';
+        });
+        
+        whatsappContact.addEventListener('mouseleave', () => {
+            whatsappContact.style.transform = 'translateY(0) scale(1)';
+        });
+    }
+}
+
+// Initialize WhatsApp contact
+setupWhatsAppContact();
+
 // Portfolio section functionality
 function setupPortfolioSection() {
     // Resume download functionality
