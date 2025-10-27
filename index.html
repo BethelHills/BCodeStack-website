@@ -385,7 +385,7 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
+            <h2 class="section-title">Contact Me</h2>
             <div class="contact-content">
                 <div class="contact-info">
                     <h3>Let's work together!</h3>
@@ -452,24 +452,31 @@
                         <div id="map" class="map"></div>
                     </div>
                 </div>
+                <div class="form-header">
+                    <h3>Send Me a Message</h3>
+                    <p>Ready to start a project? Drop me a line!</p>
+                </div>
                 <form class="contact-form" id="contact-form" action="https://formspree.io/f/xnnblpwp" method="POST">
                     <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        <input type="text" id="name" name="name" placeholder="👋 What should I call you?" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        <input type="email" id="email" name="email" placeholder="📧 Your email address" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                        <input type="text" id="subject" name="subject" placeholder="💡 What's this about?" required>
                     </div>
                     <div class="form-group">
-                        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                        <textarea id="message" name="message" placeholder="✨ Tell me about your project, idea, or just say hello! I'm excited to hear from you..." rows="5" required></textarea>
                     </div>
                     <!-- Hidden field for auto-reply configuration -->
                     <input type="hidden" name="_replyto" id="replyto">
                     <input type="hidden" name="_subject" value="New Contact Form Submission - BCodeStack Portfolio">
                     <input type="hidden" name="_next" value="https://bethelhills.github.io/BCodeStack-website/?success=true">
-                    <button type="submit" class="btn btn-primary">Send Message</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
                     <div id="form-success" class="form-success" style="display: none;">
                         <i class="fas fa-check-circle"></i>
                         <p>Thank you! Your message has been sent successfully. You'll receive an auto-reply confirmation shortly.</p>
