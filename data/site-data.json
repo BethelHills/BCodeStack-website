@@ -1,0 +1,28 @@
+{
+  "features": [
+    {
+      "id": "performance",
+      "title": "Performance & Best Practices",
+      "description": "Optimized assets, preloading critical resources, responsive images, and lightweight animations for fast-loading pages and great Core Web Vitals.",
+      "icon": "fas fa-tachometer-alt"
+    },
+    {
+      "id": "accessibility",
+      "title": "Accessibility (A11y)",
+      "description": "Semantic HTML, keyboard navigation, ARIA attributes, and focus-visible handling to ensure an inclusive user experience.",
+      "icon": "fas fa-universal-access"
+    },
+    {
+      "id": "scalability",
+      "title": "Scalability & Architecture",
+      "description": "Component-driven UI, modular CSS, and clear separation of concerns to make the site easy to maintain and extend.",
+      "icon": "fas fa-layer-group"
+    },
+    {
+      "id": "devops",
+      "title": "DevOps & CI/CD",
+      "description": "Deployment-ready configuration for Vercel and Docker-friendly projects, with CI/CD workflows to validate builds and tests.",
+      "icon": "fas fa-server"
+    }
+  ]
+}

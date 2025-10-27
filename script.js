@@ -1,16 +1,21 @@
-// DOM Elements
+// DOM Elements (guarded selectors)
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
-const navLinks = document.querySelectorAll('.nav-link');
+const navLinks = document.querySelectorAll('.nav-link') || [];
 const contactForm = document.getElementById('contact-form');
-const filterBtns = document.querySelectorAll('.filter-btn');
-const projectCards = document.querySelectorAll('.project-card');
+const filterBtns = document.querySelectorAll('.filter-btn') || [];
+const projectCards = document.querySelectorAll('.project-card') || [];
+const themeToggleBtn = document.getElementById('theme-toggle');
 
 // Mobile Navigation Toggle
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
+if (hamburger) {
+    hamburger.addEventListener('click', () => {
+        const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.classList.toggle('active');
+        if (navMenu) navMenu.classList.toggle('active');
+        hamburger.setAttribute('aria-expanded', String(!expanded));
+    });
+}
 
 // Close mobile menu when clicking on a link
 navLinks.forEach(link => {
@@ -29,10 +34,7 @@ navLinks.forEach(link => {
         
         if (targetSection) {
             const offsetTop = targetSection.offsetTop - 70; // Account for fixed navbar
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: offsetTop, behavior: 'smooth' });
         }
     });
 });
@@ -71,31 +73,33 @@ filterBtns.forEach(btn => {
 });
 
 // Contact form handling
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = new FormData(contactForm);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const subject = formData.get('subject');
-    const message = formData.get('message');
-    
-    // Basic validation
-    if (!name || !email || !subject || !message) {
-        showNotification('Please fill in all fields', 'error');
-        return;
-    }
-    
-    if (!isValidEmail(email)) {
-        showNotification('Please enter a valid email address', 'error');
-        return;
-    }
-    
-    // Simulate form submission (replace with actual form handling)
-    showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
-    contactForm.reset();
-});
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(contactForm);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const subject = formData.get('subject');
+        const message = formData.get('message');
+        
+        // Basic validation
+        if (!name || !email || !subject || !message) {
+            showNotification('Please fill in all fields', 'error');
+            return;
+        }
+        
+        if (!isValidEmail(email)) {
+            showNotification('Please enter a valid email address', 'error');
+            return;
+        }
+        
+        // Simulate form submission (replace with actual form handling)
+        showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+        contactForm.reset();
+    });
+}
 
 // Email validation
 function isValidEmail(email) {
@@ -232,6 +236,67 @@ window.addEventListener('load', () => {
             }, 500);
         }, 1000);
     }
+});
+
+// Theme toggle (light/dark) with persistence
+function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    if (theme === 'dark') {
+        themeToggleBtn && (themeToggleBtn.innerHTML = '<i class="fas fa-sun" aria-hidden="true"></i>');
+    } else {
+        themeToggleBtn && (themeToggleBtn.innerHTML = '<i class="fas fa-moon" aria-hidden="true"></i>');
+    }
+}
+
+function initTheme() {
+    try {
+        const stored = localStorage.getItem('bcodestack_theme');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = stored || (prefersDark ? 'dark' : 'light');
+        applyTheme(theme);
+
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                const current = document.documentElement.getAttribute('data-theme') || 'light';
+                const next = current === 'dark' ? 'light' : 'dark';
+                applyTheme(next);
+                localStorage.setItem('bcodestack_theme', next);
+                showNotification(`Switched to ${next} theme`, 'info');
+            });
+        }
+    } catch (err) {
+        console.warn('Theme init failed', err);
+    }
+}
+
+initTheme();
+
+// Render features from JSON data
+async function renderFeatures() {
+    const container = document.getElementById('features-list');
+    if (!container) return;
+
+    try {
+        const resp = await fetch('/data/site-data.json', {cache: 'no-cache'});
+        if (!resp.ok) throw new Error('Failed to load site data');
+        const data = await resp.json();
+        const features = data.features || [];
+
+        container.innerHTML = features.map(f => `
+            <article class="feature-card" id="feature-${f.id}" aria-labelledby="feature-title-${f.id}">
+                <div class="feature-icon"><i class="${f.icon}" aria-hidden="true"></i></div>
+                <h3 id="feature-title-${f.id}">${f.title}</h3>
+                <p>${f.description}</p>
+            </article>
+        `).join('');
+    } catch (err) {
+        console.warn('Could not render features:', err);
+    }
+}
+
+// Initialize rendering on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+    renderFeatures();
 });
 
 // Add CSS for loading animation

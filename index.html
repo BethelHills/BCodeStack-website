@@ -39,6 +39,38 @@
     
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
+        <!-- Structured Data (JSON-LD) -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "Organization",
+                    "name": "BCodeStack",
+                    "url": "https://bethelhills.github.io/BCodeStack-website",
+                    "logo": "https://bethelhills.github.io/BCodeStack-website/assets/images/BCodeStack.Logo.jpg",
+                    "sameAs": [
+                        "https://github.com/BethelHills",
+                        "https://linkedin.com/in/bethelhillary",
+                        "https://twitter.com/BCodeStack"
+                    ],
+                    "contactPoint": [{
+                        "@type": "ContactPoint",
+                        "contactType": "customer support",
+                        "email": "bcodestack@gmail.com",
+                        "telephone": "+2348143465588",
+                        "areaServed": "NG"
+                    }]
+                },
+                {
+                    "@type": "WebSite",
+                    "name": "BCodeStack Portfolio",
+                    "url": "https://bethelhills.github.io/BCodeStack-website",
+                    "author": {"@type": "Person", "name": "Bethel Hillary"}
+                }
+            ]
+        }
+        </script>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -62,11 +94,14 @@
                 <a href="#portfolio" class="nav-link">Portfolio</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
-            <div class="hamburger" id="hamburger">
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle color theme" title="Toggle color theme">
+                <i class="fas fa-moon" aria-hidden="true"></i>
+            </button>
+            <button class="hamburger" id="hamburger" aria-controls="nav-menu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
-            </div>
+            </button>
         </div>
     </nav>
 
@@ -101,6 +136,16 @@
         </div>
         <div class="scroll-indicator">
             <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Features (JSON-driven content will populate this) -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Technical Highlights</h2>
+            <div id="features-list" class="features-list">
+                <!-- features rendered from data/site-data.json -->
+            </div>
         </div>
     </section>
 
