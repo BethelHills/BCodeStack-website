@@ -449,6 +449,62 @@ body.loading {
     position: relative;
 }
 
+/* Ensure section headings are not hidden by the fixed navbar when using in-page links */
+:root {
+    --scroll-offset: 90px; /* height of fixed navbar + spacing */
+}
+
+.section-title,
+h2.section-title {
+    scroll-margin-top: var(--scroll-offset);
+}
+
+/* Features section styling for readability */
+.features {
+    padding: 80px 0;
+    background: linear-gradient(180deg, #ffffff 0%, #f1f7ff 100%);
+    border-top: 1px solid var(--border-color);
+}
+
+.features-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.feature-card {
+    background: white;
+    padding: 1.25rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.06);
+    border: 1px solid rgba(37, 99, 235, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
+}
+
+.feature-icon {
+    font-size: 1.5rem;
+    color: var(--tech-blue);
+    margin-bottom: 0.75rem;
+}
+
+.feature-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.feature-card p {
+    color: var(--text-light);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
 .section-title::after {
     content: '';
     position: absolute;
