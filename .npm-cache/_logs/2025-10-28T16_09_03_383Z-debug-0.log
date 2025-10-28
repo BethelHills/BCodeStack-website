@@ -1,0 +1,138 @@
+0 verbose cli /opt/homebrew/Cellar/node/24.7.0/bin/node /opt/homebrew/bin/npm
+1 info using npm@11.5.1
+2 info using node@v24.7.0
+3 silly config load:file:/opt/homebrew/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/hb/BCodeStack-website/.npmrc
+5 silly config load:file:/Users/hb/.npmrc
+6 silly config load:file:/opt/homebrew/etc/npmrc
+7 verbose title npm i @vercel/speed-insights
+8 verbose argv "i" "@vercel/speed-insights" "--cache" "./.npm-cache" "--no-audit" "--prefer-offline"
+9 verbose logfile logs-max:10 dir:/Users/hb/BCodeStack-website/.npm-cache/_logs/2025-10-28T16_09_03_383Z-
+10 verbose logfile /Users/hb/BCodeStack-website/.npm-cache/_logs/2025-10-28T16_09_03_383Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4496293888 maxSize:1124073472 maxEntrySize:562036736
+13 silly idealTree buildDeps
+14 silly fetch manifest @vercel/speed-insights@*
+15 silly packumentCache full:https://registry.npmjs.org/@vercel%2fspeed-insights cache-miss
+16 http fetch GET 200 https://registry.npmjs.org/@vercel%2fspeed-insights 807ms (cache miss)
+17 silly packumentCache full:https://registry.npmjs.org/@vercel%2fspeed-insights set size:undefined disposed:false
+18 silly fetch manifest @sveltejs/kit@^1 || ^2
+19 silly packumentCache full:https://registry.npmjs.org/@sveltejs%2fkit cache-miss
+20 http fetch GET 200 https://registry.npmjs.org/npm 1065ms
+21 http fetch GET 200 https://registry.npmjs.org/@sveltejs%2fkit 806ms (cache miss)
+22 silly packumentCache full:https://registry.npmjs.org/@sveltejs%2fkit set size:undefined disposed:false
+23 silly fetch manifest @opentelemetry/api@^1.0.0
+24 silly packumentCache full:https://registry.npmjs.org/@opentelemetry%2fapi cache-miss
+25 http fetch GET 200 https://registry.npmjs.org/@opentelemetry%2fapi 269ms (cache miss)
+26 silly packumentCache full:https://registry.npmjs.org/@opentelemetry%2fapi set size:undefined disposed:false
+27 silly fetch manifest @sveltejs/vite-plugin-svelte@^3.0.0 || ^4.0.0-next.1 || ^5.0.0 || ^6.0.0-next.0
+28 silly packumentCache full:https://registry.npmjs.org/@sveltejs%2fvite-plugin-svelte cache-miss
+29 http fetch GET 200 https://registry.npmjs.org/@sveltejs%2fvite-plugin-svelte 291ms (cache miss)
+30 silly packumentCache full:https://registry.npmjs.org/@sveltejs%2fvite-plugin-svelte set size:undefined disposed:false
+31 silly fetch manifest svelte@^5.0.0
+32 silly packumentCache full:https://registry.npmjs.org/svelte cache-miss
+33 http fetch GET 200 https://registry.npmjs.org/svelte 379ms (cache miss)
+34 silly packumentCache full:https://registry.npmjs.org/svelte set size:undefined disposed:false
+35 silly fetch manifest vite@^6.3.0 || ^7.0.0
+36 silly packumentCache full:https://registry.npmjs.org/vite cache-miss
+37 http fetch GET 200 https://registry.npmjs.org/vite 2975ms (cache miss)
+38 silly packumentCache full:https://registry.npmjs.org/vite set size:undefined disposed:false
+39 silly fetch manifest @types/node@^20.19.0 || >=22.12.0
+40 silly packumentCache full:https://registry.npmjs.org/@types%2fnode cache-miss
+41 http fetch GET 200 https://registry.npmjs.org/@types%2fnode 605ms (cache miss)
+42 silly packumentCache full:https://registry.npmjs.org/@types%2fnode set size:undefined disposed:false
+43 silly fetch manifest jiti@>=1.21.0
+44 silly packumentCache full:https://registry.npmjs.org/jiti cache-miss
+45 http fetch GET 200 https://registry.npmjs.org/jiti 250ms (cache miss)
+46 silly packumentCache full:https://registry.npmjs.org/jiti set size:undefined disposed:false
+47 silly fetch manifest less@^4.0.0
+48 silly packumentCache full:https://registry.npmjs.org/less cache-miss
+49 http fetch GET 200 https://registry.npmjs.org/less 227ms (cache miss)
+50 silly packumentCache full:https://registry.npmjs.org/less set size:undefined disposed:false
+51 silly fetch manifest lightningcss@^1.21.0
+52 silly packumentCache full:https://registry.npmjs.org/lightningcss cache-miss
+53 http fetch GET 200 https://registry.npmjs.org/lightningcss 208ms (cache miss)
+54 silly packumentCache full:https://registry.npmjs.org/lightningcss set size:undefined disposed:false
+55 silly fetch manifest sass@^1.70.0
+56 silly packumentCache full:https://registry.npmjs.org/sass cache-miss
+57 http fetch GET 200 https://registry.npmjs.org/sass 320ms (cache miss)
+58 silly packumentCache full:https://registry.npmjs.org/sass set size:undefined disposed:false
+59 silly fetch manifest sass-embedded@^1.70.0
+60 silly packumentCache full:https://registry.npmjs.org/sass-embedded cache-miss
+61 http fetch GET 200 https://registry.npmjs.org/sass-embedded 271ms (cache miss)
+62 silly packumentCache full:https://registry.npmjs.org/sass-embedded set size:undefined disposed:false
+63 silly fetch manifest stylus@>=0.54.8
+64 silly packumentCache full:https://registry.npmjs.org/stylus cache-miss
+65 http fetch GET 200 https://registry.npmjs.org/stylus 231ms (cache miss)
+66 silly packumentCache full:https://registry.npmjs.org/stylus set size:undefined disposed:false
+67 silly fetch manifest sugarss@^5.0.0
+68 silly packumentCache full:https://registry.npmjs.org/sugarss cache-miss
+69 http fetch GET 200 https://registry.npmjs.org/sugarss 233ms (cache miss)
+70 silly packumentCache full:https://registry.npmjs.org/sugarss set size:undefined disposed:false
+71 silly fetch manifest postcss@^8.3.3
+72 silly packumentCache full:https://registry.npmjs.org/postcss cache-miss
+73 http fetch GET 200 https://registry.npmjs.org/postcss 250ms (cache miss)
+74 silly packumentCache full:https://registry.npmjs.org/postcss set size:undefined disposed:false
+75 silly fetch manifest terser@^5.16.0
+76 silly packumentCache full:https://registry.npmjs.org/terser cache-miss
+77 http fetch GET 200 https://registry.npmjs.org/terser 272ms (cache miss)
+78 silly packumentCache full:https://registry.npmjs.org/terser set size:undefined disposed:false
+79 silly fetch manifest tsx@^4.8.1
+80 silly packumentCache full:https://registry.npmjs.org/tsx cache-miss
+81 http fetch GET 200 https://registry.npmjs.org/tsx 244ms (cache miss)
+82 silly packumentCache full:https://registry.npmjs.org/tsx set size:undefined disposed:false
+83 silly fetch manifest yaml@^2.4.2
+84 silly packumentCache full:https://registry.npmjs.org/yaml cache-miss
+85 http fetch GET 200 https://registry.npmjs.org/yaml 254ms (cache miss)
+86 silly packumentCache full:https://registry.npmjs.org/yaml set size:undefined disposed:false
+87 silly fetch manifest next@>= 13
+88 silly packumentCache full:https://registry.npmjs.org/next cache-miss
+89 http fetch GET 200 https://registry.npmjs.org/next 1354ms (cache miss)
+90 silly packumentCache full:https://registry.npmjs.org/next set size:undefined disposed:false
+91 silly fetch manifest @playwright/test@^1.51.1
+92 silly packumentCache full:https://registry.npmjs.org/@playwright%2ftest cache-miss
+93 http fetch GET 200 https://registry.npmjs.org/@playwright%2ftest 911ms (cache miss)
+94 silly packumentCache full:https://registry.npmjs.org/@playwright%2ftest set size:undefined disposed:false
+95 silly fetch manifest babel-plugin-react-compiler@*
+96 silly packumentCache full:https://registry.npmjs.org/babel-plugin-react-compiler cache-miss
+97 http fetch GET 200 https://registry.npmjs.org/babel-plugin-react-compiler 242ms (cache miss)
+98 silly packumentCache full:https://registry.npmjs.org/babel-plugin-react-compiler set size:undefined disposed:false
+99 silly fetch manifest react@^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0
+100 silly packumentCache full:https://registry.npmjs.org/react cache-miss
+101 http fetch GET 200 https://registry.npmjs.org/react 719ms (cache miss)
+102 silly packumentCache full:https://registry.npmjs.org/react set size:undefined disposed:false
+103 silly fetch manifest react-dom@^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0
+104 silly packumentCache full:https://registry.npmjs.org/react-dom cache-miss
+105 http fetch GET 200 https://registry.npmjs.org/react-dom 633ms (cache miss)
+106 silly packumentCache full:https://registry.npmjs.org/react-dom set size:undefined disposed:false
+107 silly fetch manifest vue@^3
+108 silly packumentCache full:https://registry.npmjs.org/vue cache-miss
+109 http fetch GET 200 https://registry.npmjs.org/vue 296ms (cache miss)
+110 silly packumentCache full:https://registry.npmjs.org/vue set size:undefined disposed:false
+111 silly fetch manifest typescript@*
+112 silly packumentCache full:https://registry.npmjs.org/typescript cache-miss
+113 http fetch GET 200 https://registry.npmjs.org/typescript 672ms (cache miss)
+114 silly packumentCache full:https://registry.npmjs.org/typescript set size:undefined disposed:false
+115 silly fetch manifest vue-router@^4
+116 silly packumentCache full:https://registry.npmjs.org/vue-router cache-miss
+117 http fetch GET 200 https://registry.npmjs.org/vue-router 258ms (cache miss)
+118 silly packumentCache full:https://registry.npmjs.org/vue-router set size:undefined disposed:false
+119 silly placeDep ROOT @vercel/speed-insights@1.2.0 OK for: bcodestack-website@1.0.0 want: *
+120 silly reify moves {}
+121 http cache @vercel/speed-insights@https://registry.npmjs.org/@vercel/speed-insights/-/speed-insights-1.2.0.tgz 0ms (cache hit)
+122 silly tarball no local data for @vercel/speed-insights@https://registry.npmjs.org/@vercel/speed-insights/-/speed-insights-1.2.0.tgz. Extracting by manifest.
+123 http fetch GET 200 https://registry.npmjs.org/@vercel/speed-insights/-/speed-insights-1.2.0.tgz 295ms (cache miss)
+124 info run @vercel/speed-insights@1.2.0 postinstall node_modules/@vercel/speed-insights node scripts/postinstall.mjs
+125 info run @vercel/speed-insights@1.2.0 postinstall { code: 0, signal: null }
+126 silly ADD node_modules/@vercel/speed-insights
+127 verbose cwd /Users/hb/BCodeStack-website
+128 verbose os Darwin 24.6.0
+129 verbose node v24.7.0
+130 verbose npm  v11.5.1
+131 notice
+131 notice New minor version of npm available! 11.5.1 -> 11.6.2
+131 notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.2
+131 notice To update run: npm install -g npm@11.6.2
+131 notice  { force: true, Symbol(proc-log.meta): true }
+132 verbose exit 0
+133 info ok

@@ -1,0 +1,24 @@
+{
+  "name": "bcodestack-website",
+  "version": "1.0.0",
+  "description": "A modern, responsive personal portfolio website built with HTML5, CSS3, and JavaScript. Perfect for showcasing your projects, skills, and professional information to potential employers and clients.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BethelHills/BCodeStack-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/BethelHills/BCodeStack-website/issues"
+  },
+  "homepage": "https://github.com/BethelHills/BCodeStack-website#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^1.2.0"
+  }
+}
