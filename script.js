@@ -323,6 +323,95 @@ document.addEventListener('DOMContentLoaded', () => {
     try { setupWireframeGallery(); } catch (e) { console.warn('Wireframe gallery init failed', e); }
 });
 
+/* Lightbox for wireframe gallery */
+const WireframeLightbox = (function () {
+    let items = [];
+    let current = 0;
+
+    function open(index) {
+        items = Array.from(document.querySelectorAll('.gallery-item'));
+        current = index;
+        const item = items[current];
+        if (!item) return;
+        const img = item.querySelector('img');
+        const isPdf = !img;
+        const url = isPdf ? item.querySelector('.gallery-placeholder-file')?.dataset?.src : img.src;
+
+        // Build lightbox content
+        const tpl = document.createElement('div');
+        tpl.className = 'lightbox-wrap';
+
+        const inner = document.createElement('div');
+        inner.className = 'lightbox-inner';
+
+        const controls = document.createElement('div');
+        controls.className = 'lightbox-controls';
+        controls.innerHTML = `
+            <button class="lightbox-prev" aria-label="Previous">&larr;</button>
+            <button class="lightbox-next" aria-label="Next">&rarr;</button>
+            <a class="lightbox-download btn btn-secondary" href="${isPdf ? (item.querySelector('.gallery-placeholder-file')?.dataset?.src || '#') : img.src}" download><i class="fas fa-download"></i> Download</a>
+            <button class="lightbox-close" aria-label="Close">&times;</button>
+        `;
+
+        const content = document.createElement('div');
+        content.className = 'lightbox-content';
+        if (isPdf) {
+            const pdfHref = item.querySelector('.gallery-placeholder-file')?.dataset?.src || '#';
+            content.innerHTML = `<iframe src="${pdfHref}" title="Wireframe PDF" style="width:100%;height:70vh;border:0;border-radius:8px;"></iframe>`;
+        } else {
+            content.innerHTML = `<img src="${img.src}" alt="Wireframe" style="max-width:100%;height:auto;border-radius:8px;box-shadow:0 20px 50px rgba(2,6,23,0.12);">`;
+        }
+
+        inner.appendChild(controls);
+        inner.appendChild(content);
+        tpl.appendChild(inner);
+
+        openViewer(tpl.innerHTML);
+
+        // Wire control events inside modal
+        setTimeout(() => {
+            const modal = document.getElementById('viewer-modal');
+            if (!modal) return;
+            const prev = modal.querySelector('.lightbox-prev');
+            const next = modal.querySelector('.lightbox-next');
+            const close = modal.querySelector('.lightbox-close');
+
+            function goto(i) {
+                closeViewer();
+                open((i + items.length) % items.length);
+            }
+
+            prev && prev.addEventListener('click', () => goto(current - 1));
+            next && next.addEventListener('click', () => goto(current + 1));
+            close && close.addEventListener('click', closeViewer);
+
+            // keyboard navigation
+            function kb(e) {
+                if (e.key === 'ArrowLeft') goto(current - 1);
+                if (e.key === 'ArrowRight') goto(current + 1);
+                if (e.key === 'Escape') closeViewer();
+            }
+            modal._kb = kb;
+            document.addEventListener('keydown', kb);
+        }, 40);
+    }
+
+    return { open };
+})();
+
+// Bind click-to-open for gallery thumbnails
+document.addEventListener('click', (e) => {
+    const galleryItem = e.target.closest('.gallery-item');
+    if (!galleryItem) return;
+    const gallery = galleryItem.parentNode;
+    if (!gallery || !gallery.classList.contains('wireframe-gallery')) return;
+    const index = Array.from(gallery.children).indexOf(galleryItem);
+    if (index >= 0) {
+        e.preventDefault();
+        WireframeLightbox.open(index);
+    }
+});
+
 function initTheme() {
     try {
         const stored = localStorage.getItem('bcodestack_theme');
