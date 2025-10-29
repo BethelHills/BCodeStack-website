@@ -935,6 +935,36 @@ h2.section-title {
     color: var(--primary-color);
     margin-bottom: 1rem;
 }
+
+/* Portfolio icon colored backplates */
+.portfolio-card[data-portfolio] .portfolio-icon,
+.portfolio-card[data-portfolio] .portfolio-icon i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    border-radius: 14px;
+    font-size: 2rem;
+}
+
+.portfolio-card[data-portfolio="resume"] .portfolio-icon,
+.portfolio-card[data-portfolio="resume"] .portfolio-icon i {
+    background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(6,182,212,0.06));
+    color: #2563eb;
+}
+
+.portfolio-card[data-portfolio="wireframes"] .portfolio-icon,
+.portfolio-card[data-portfolio="wireframes"] .portfolio-icon i {
+    background: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(124,58,237,0.06));
+    color: #7c3aed;
+}
+
+.portfolio-card[data-portfolio="certifications"] .portfolio-icon,
+.portfolio-card[data-portfolio="certifications"] .portfolio-icon i {
+    background: linear-gradient(135deg, rgba(34,197,94,0.12), rgba(16,185,129,0.06));
+    color: #10b981;
+}
 .portfolio-icon {
     font-size: 3rem;
     color: var(--primary-color);
