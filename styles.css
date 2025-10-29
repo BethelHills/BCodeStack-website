@@ -719,6 +719,42 @@ h2.section-title {
     color: rgba(37,99,235,0.9);
 }
 
+/* Colored icon backplates per project */
+.project-card[data-project] .project-placeholder,
+.project-card[data-project] i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 84px;
+    height: 84px;
+    border-radius: 18px;
+    font-size: 2.4rem;
+}
+
+.project-card[data-project="ecommerce"] .project-placeholder,
+.project-card[data-project="ecommerce"] i {
+    background: linear-gradient(135deg, rgba(6,182,212,0.12), rgba(59,130,246,0.08));
+    color: #0891b2; /* cyan */
+}
+
+.project-card[data-project="cloud-api"] .project-placeholder,
+.project-card[data-project="cloud-api"] i {
+    background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(37,99,235,0.06));
+    color: #2563eb; /* blue */
+}
+
+.project-card[data-project="analytics"] .project-placeholder,
+.project-card[data-project="analytics"] i {
+    background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(99,102,241,0.06));
+    color: #7c3aed; /* purple */
+}
+
+.project-card[data-project="taskflow"] .project-placeholder,
+.project-card[data-project="taskflow"] i {
+    background: linear-gradient(135deg, rgba(245,158,11,0.12), rgba(249,115,22,0.06));
+    color: #f59e0b; /* amber */
+}
+
 .project-card .project-header {
     position: absolute;
     top: 12px;
