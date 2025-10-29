@@ -284,11 +284,38 @@ async function renderFeatures() {
 
         container.innerHTML = features.map(f => `
             <article class="feature-card" id="feature-${f.id}" aria-labelledby="feature-title-${f.id}">
-                <div class="feature-icon"><i class="${f.icon}" aria-hidden="true"></i></div>
-                <h3 id="feature-title-${f.id}">${f.title}</h3>
-                <p>${f.description}</p>
+                <div class="feature-icon" aria-hidden="true"><i class="${f.icon}"></i></div>
+                <div class="feature-body">
+                    <h3 id="feature-title-${f.id}">${f.title}</h3>
+                    <p class="feature-summary">${f.description}</p>
+                    <div class="feature-details" id="feature-details-${f.id}" hidden>
+                        <p>${f.details || ''}</p>
+                    </div>
+                    <button class="feature-toggle" aria-expanded="false" aria-controls="feature-details-${f.id}">Learn more</button>
+                </div>
             </article>
         `).join('');
+
+        // Attach toggle handlers for expanded details
+        features.forEach(f => {
+            const btn = document.querySelector(`#feature-${f.id} .feature-toggle`);
+            const details = document.getElementById(`feature-details-${f.id}`);
+            if (btn && details) {
+                btn.addEventListener('click', () => {
+                    const expanded = btn.getAttribute('aria-expanded') === 'true';
+                    btn.setAttribute('aria-expanded', String(!expanded));
+                    if (expanded) {
+                        details.hidden = true;
+                        btn.textContent = 'Learn more';
+                    } else {
+                        details.hidden = false;
+                        btn.textContent = 'Show less';
+                        // smooth scroll the details into view if needed
+                        details.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                });
+            }
+        });
     } catch (err) {
         console.warn('Could not render features:', err);
     }

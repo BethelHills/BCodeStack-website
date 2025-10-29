@@ -4,24 +4,28 @@
       "id": "performance",
       "title": "Performance & Best Practices",
       "description": "Optimized assets, preloading critical resources, responsive images, and lightweight animations for fast-loading pages and great Core Web Vitals.",
+  "details": "We optimize images and critical resources, use efficient CSS and JS patterns, and prioritize perceived performance so pages load quickly on mobile and desktop. This includes asset preloading, responsive image sets, and small, interrupt-free animations to keep Core Web Vitals healthy.",
       "icon": "fas fa-tachometer-alt"
     },
     {
       "id": "accessibility",
       "title": "Accessibility (A11y)",
       "description": "Semantic HTML, keyboard navigation, ARIA attributes, and focus-visible handling to ensure an inclusive user experience.",
+  "details": "Designs follow WCAG principles: semantic markup, clear focus outlines, keyboard-first interactions, and ARIA where needed. We test with screen readers and keyboard navigation to make sure content is reachable and understandable for all users.",
       "icon": "fas fa-universal-access"
     },
     {
       "id": "scalability",
       "title": "Scalability & Architecture",
       "description": "Component-driven UI, modular CSS, and clear separation of concerns to make the site easy to maintain and extend.",
+  "details": "The site is structured with reusable components and modular styles, making it straightforward to add features or migrate to a framework. We favor small, testable units and clear interfaces so future contributors can iterate safely.",
       "icon": "fas fa-layer-group"
     },
     {
       "id": "devops",
       "title": "DevOps & CI/CD",
       "description": "Deployment-ready configuration for Vercel and Docker-friendly projects, with CI/CD workflows to validate builds and tests.",
+  "details": "Deployments are automated with CI pipelines that run linting and tests before publishing. The project is ready for containerization and cloud deployment, with infrastructure-as-code friendly patterns to simplify scaling and rollback.",
       "icon": "fas fa-server"
     }
   ]
