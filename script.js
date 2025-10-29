@@ -248,6 +248,81 @@ function applyTheme(theme) {
     }
 }
 
+// Wireframe gallery: render uploaded images/PDFs in the wireframe gallery area
+function setupWireframeGallery() {
+    const gallery = document.querySelector('.wireframe-gallery');
+    if (!gallery) return;
+
+    // List of uploaded wireframe files (paths relative to site root)
+    const files = [
+        '/assets/images/Iphone Wireframe.1. 2025-06-19 at 2.21.10 PM.png',
+        '/assets/images/Iphone Wireframe.2.  2025-06-19 at 2.20.56 PM.png',
+        '/assets/images/Iphone Wireframe.3. 2025-06-19 at 2.20.44 PM.png',
+        '/assets/images/Iphone Wireframe.4. 2025-06-19 at 2.20.32 PM.png',
+        '/assets/images/Iphone Wireframe.5. 2025-06-19 at 2.20.21 PM.png',
+        '/assets/images/Iphone Wireframe.6.2025-06-19 at 2.20.09 PM.png',
+        '/assets/images/Mobile Wireframe 2025-07-27 at 5.54.36 PM.png'
+    ];
+
+    gallery.innerHTML = '';
+
+    files.forEach(path => {
+        const url = encodeURI(path);
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+
+        const isPdf = path.toLowerCase().endsWith('.pdf');
+
+        if (isPdf) {
+            // PDF placeholder
+            const box = document.createElement('div');
+            box.className = 'gallery-placeholder-file';
+            box.innerHTML = `<i class="fas fa-file-pdf"></i><div class="file-name">${path.split('/').pop()}</div>`;
+            item.appendChild(box);
+        } else {
+            const img = document.createElement('img');
+            img.className = 'gallery-thumb';
+            img.src = url;
+            img.alt = 'Wireframe';
+            img.loading = 'lazy';
+            item.appendChild(img);
+        }
+
+        // Actions: View (open in modal) + Download
+        const actions = document.createElement('div');
+        actions.className = 'gallery-actions';
+
+        const viewBtn = document.createElement('button');
+        viewBtn.className = 'btn btn-primary';
+        viewBtn.type = 'button';
+        viewBtn.innerHTML = '<i class="fas fa-eye"></i> View';
+        viewBtn.addEventListener('click', () => {
+            if (isPdf) {
+                openViewer(`<div style="padding:0.5rem 1rem;display:flex;justify-content:flex-end;"><a class=\"btn btn-primary\" href=\"${url}\" target=\"_blank\" rel=\"noopener noreferrer\"><i class=\"fas fa-external-link-alt\"></i> Open PDF</a></div><div style=\"padding:1rem\"><iframe src=\"${url}\" style=\"width:100%;height:70vh;border:0;border-radius:6px;\" title=\"Wireframe PDF\"></iframe></div>`);
+            } else {
+                openViewer(`<div style="padding:1rem;text-align:center;"><img src=\"${url}\" alt=\"Wireframe\" style=\"max-width:100%;height:auto;border-radius:8px;box-shadow:0 12px 30px rgba(2,6,23,0.08);\"></div>`);
+            }
+        });
+
+        const dl = document.createElement('a');
+        dl.className = 'btn btn-secondary';
+        dl.href = url;
+        dl.setAttribute('download', '');
+        dl.innerHTML = '<i class="fas fa-download"></i> Download';
+
+        actions.appendChild(viewBtn);
+        actions.appendChild(dl);
+        item.appendChild(actions);
+
+        gallery.appendChild(item);
+    });
+}
+
+// Initialize wireframe gallery on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+    try { setupWireframeGallery(); } catch (e) { console.warn('Wireframe gallery init failed', e); }
+});
+
 function initTheme() {
     try {
         const stored = localStorage.getItem('bcodestack_theme');
@@ -869,12 +944,88 @@ function showFormSuccess() {
 
 // Portfolio section functionality
 function setupPortfolioSection() {
-    // Resume download functionality
-    const downloadResumeBtn = document.getElementById('download-resume');
-    if (downloadResumeBtn) {
-        downloadResumeBtn.addEventListener('click', (e) => {
+    // Resume view functionality — make the anchor point directly to the uploaded PDF
+    const viewResumeBtn = document.getElementById('view-resume');
+    if (viewResumeBtn) {
+        // If you uploaded the resume at /assets/images/Bethel_Hillary_Resume.docx-2.pdf, make the link point there
+        const uploadedPath = '/assets/images/Bethel_Hillary_Resume.docx-2.pdf';
+        viewResumeBtn.setAttribute('href', uploadedPath);
+        viewResumeBtn.setAttribute('rel', 'noopener noreferrer');
+
+        // Clean existing click listeners by cloning the node
+        const newBtn = viewResumeBtn.cloneNode(true);
+        viewResumeBtn.parentNode.replaceChild(newBtn, viewResumeBtn);
+
+        // Attach robust click handler with loading spinner and iframe load/error handling
+        newBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            showNotification('Resume download will be available soon! Upload your PDF to enable this feature.', 'info');
+            const href = newBtn.getAttribute('href');
+            if (!href) {
+                openViewer(`<div style="padding:1rem"><h3>Resume not available</h3><p>The resume file is not linked. Please upload it to <code>/assets/</code> or contact the site owner.</p></div>`);
+                return;
+            }
+
+            // Build modal content with spinner and iframe placeholder
+            const modalContent = document.createElement('div');
+
+            const toolbar = document.createElement('div');
+            toolbar.style.cssText = 'display:flex;justify-content:flex-end;padding:0.5rem 0.75rem;background:transparent;';
+            const openBtn = document.createElement('a');
+            openBtn.className = 'btn btn-primary';
+            openBtn.style.fontWeight = '800';
+            openBtn.style.display = 'inline-flex';
+            openBtn.style.alignItems = 'center';
+            openBtn.style.gap = '0.5rem';
+            openBtn.href = href;
+            openBtn.target = '_blank';
+            openBtn.rel = 'noopener noreferrer';
+            openBtn.innerHTML = '<i class="fas fa-external-link-alt"></i> Open in new tab';
+            toolbar.appendChild(openBtn);
+
+            const bodyDiv = document.createElement('div');
+            bodyDiv.style.padding = '0 1rem 1rem 1rem';
+
+            const spinner = document.createElement('div');
+            spinner.className = 'resume-spinner';
+            spinner.style.cssText = 'display:flex;align-items:center;justify-content:center;height:80vh;';
+            spinner.innerHTML = '<div style="width:48px;height:48px;border:6px solid #e5e7eb;border-top-color:#2563eb;border-radius:50%;animation:spin 1s linear infinite;"></div>';
+
+            bodyDiv.appendChild(spinner);
+            modalContent.appendChild(toolbar);
+            modalContent.appendChild(bodyDiv);
+
+            // Open modal with spinner first
+            openViewer(modalContent.innerHTML);
+
+            // After modal is open, replace spinner with iframe and attach load/error handlers
+            setTimeout(() => {
+                const viewerBody = document.getElementById('viewer-body');
+                if (!viewerBody) return;
+
+                // Create iframe
+                const iframe = document.createElement('iframe');
+                iframe.src = href;
+                iframe.title = 'Resume';
+                iframe.style.cssText = 'width:100%;height:80vh;border:0;border-radius:6px;opacity:0;transition:opacity 260ms ease;';
+
+                // onload -> show iframe
+                iframe.onload = () => {
+                    // replace spinner with iframe
+                    viewerBody.innerHTML = '';
+                    // re-add toolbar at top
+                    viewerBody.appendChild(toolbar);
+                    viewerBody.appendChild(iframe);
+                    setTimeout(() => iframe.style.opacity = '1', 50);
+                };
+
+                // onerror -> fallback to open in new tab message
+                iframe.onerror = () => {
+                    viewerBody.innerHTML = `<div style="padding:1rem"><h3>Unable to display resume inline</h3><p>Your browser or server prevented inline viewing. <a href=\"${href}\" target=\"_blank\" rel=\"noopener noreferrer\">Open the resume in a new tab</a>.</p></div>`;
+                };
+
+                // Insert iframe after a short delay to allow DOM updates
+                viewerBody.appendChild(iframe);
+            }, 80);
         });
     }
     
@@ -885,14 +1036,8 @@ function setupPortfolioSection() {
             e.preventDefault();
             const wireframeDetails = document.getElementById('wireframe-details');
             if (wireframeDetails) {
-                if (wireframeDetails.style.display === 'none' || wireframeDetails.style.display === '') {
-                    wireframeDetails.style.display = 'block';
-                    wireframeDetails.scrollIntoView({ behavior: 'smooth' });
-                    viewWireframesBtn.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Wireframes';
-                } else {
-                    wireframeDetails.style.display = 'none';
-                    viewWireframesBtn.innerHTML = '<i class="fas fa-external-link-alt"></i> View Wireframes';
-                }
+                // open wireframe details in modal for cleaner UX
+                openViewer(wireframeDetails.innerHTML);
             }
         });
     }
@@ -902,10 +1047,79 @@ function setupPortfolioSection() {
     if (viewCertificationsBtn) {
         viewCertificationsBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            showNotification('Certifications section will be available soon!', 'info');
+            // Show placeholder certifications modal
+            openViewer('<div style="padding:1rem"><h3>Certifications</h3><p>Certifications will be displayed here. Upload PDFs or links to show them in this viewer.</p></div>');
         });
     }
 }
+
+// Add tactile 'pressed' feedback for physical buttons
+function setupButtonPressFeedback() {
+    const btns = [
+        document.getElementById('view-wireframes'),
+        document.getElementById('view-certifications')
+    ].filter(Boolean);
+
+    btns.forEach(btn => {
+        // pointerdown for both mouse and touch
+        btn.addEventListener('pointerdown', () => {
+            btn.classList.add('pressed');
+        });
+        // remove on pointerup / leave / cancel
+        ['pointerup', 'pointercancel', 'pointerleave', 'blur'].forEach(ev => {
+            btn.addEventListener(ev, () => btn.classList.remove('pressed'));
+        });
+    });
+}
+
+// init small UI bits on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+    try { setupButtonPressFeedback(); } catch (e) { /* ignore if elements missing */ }
+});
+
+/* Viewer modal utilities */
+function openViewer(htmlContent) {
+    const modal = document.getElementById('viewer-modal');
+    const body = document.getElementById('viewer-body');
+    if (!modal || !body) return;
+    body.innerHTML = htmlContent || '<p>No content</p>';
+    modal.classList.remove('hidden');
+    modal.setAttribute('aria-hidden', 'false');
+    // trap focus: move focus to close button
+    const closeBtn = modal.querySelector('.viewer-close');
+    if (closeBtn) closeBtn.focus();
+    // add escape key handler
+    function escHandler(e) {
+        if (e.key === 'Escape') closeViewer();
+    }
+    modal._escHandler = escHandler;
+    document.addEventListener('keydown', escHandler);
+}
+
+function closeViewer() {
+    const modal = document.getElementById('viewer-modal');
+    if (!modal) return;
+    modal.classList.add('hidden');
+    modal.setAttribute('aria-hidden', 'true');
+    // cleanup escape handler
+    if (modal._escHandler) {
+        document.removeEventListener('keydown', modal._escHandler);
+        delete modal._escHandler;
+    }
+}
+
+// wire modal close button and backdrop
+document.addEventListener('click', (e) => {
+    const modal = document.getElementById('viewer-modal');
+    if (!modal) return;
+    if (e.target.matches('.viewer-close') || e.target.matches('.viewer-modal.hidden') || e.target.matches('.viewer-backdrop')) {
+        closeViewer();
+    }
+    // clicking on modal backdrop area (but not the content) should close
+    if (e.target.classList && e.target.classList.contains('viewer-modal')) {
+        closeViewer();
+    }
+});
 
 // Initialize portfolio section
 setupPortfolioSection();
